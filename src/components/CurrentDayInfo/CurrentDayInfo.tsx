@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Box, Grid, Icon, Typography } from '@mui/material';
+import { Box, Divider, Grid, Icon, Typography } from '@mui/material';
 import { FC } from 'react';
 import DaySecondaryInfo from './DaySecondaryInfo';
 
@@ -21,7 +21,8 @@ const IconStyled = styled(Icon)({
 });
 
 const CurrentDayInfo: FC = () => (
-  <Grid container spacing={2} marginBottom={10}>
+  <Grid container spacing={2}>
+    {/* Titulo que muestra la ciudad y el pais  */}
     <Grid item xs={12}>
       <Typography variant="h4">Madrid, España</Typography>
       <Typography variant="h6" color="greenyellow">
@@ -37,7 +38,7 @@ const CurrentDayInfo: FC = () => (
       alignItems={'center'}
     >
       <Grid item>
-        <IconStyled sx={{ fontSize: 75 }}>
+        <IconStyled style={{ fontSize: 90 }}>
           {/* weather_code hourly */}
           add_circle
         </IconStyled>

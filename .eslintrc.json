@@ -3,6 +3,11 @@
   "rules": {
     "semi": "error",
     "arrow-body-style": "warn",
+    /*
+      El componente se cierra en la misma linea que se utiliza si no contiene
+        un hijo dentro de si mismo.
+      Descripción oficial de la regla: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md
+    */
     "react/self-closing-comp": [
       "error",
       {

@@ -45,9 +45,9 @@ const DaySecondaryInfo: FC = () => (
   <>
     <FlexContainer>
       {/* Máximo del dia temperature_2m_max Daily */}
-      <InfoBox data="Maxima" value="30º" />
+      <InfoBox data="Máxima" value="30º" />
       {/* Probabilidad de precipitación: precipitation_probability hourly */}
-      <InfoBox data="Lluvía" value="50%" />
+      <InfoBox data="Lluvia" value="50%" />
       {/* Amananece surise daily */}
       <InfoBox data="Amanece" value="15:30" />
     </FlexContainer>
