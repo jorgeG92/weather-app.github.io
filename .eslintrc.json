@@ -1,6 +1,14 @@
 {
   "extends": ["react-app", "react-app/jest", "prettier"],
   "rules": {
-    "semi": "error"
+    "semi": "error",
+    "arrow-body-style": "warn",
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": true,
+        "html": true
+      }
+    ]
   }
 }
