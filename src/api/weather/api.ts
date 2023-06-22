@@ -1,5 +1,7 @@
-import axios, { AxiosPromise, AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { GECODE_Location } from '../locations';
+
+import { OP_WMO_CODES_TYPE } from '../../components/common/WeatherCodes';
 
 const weatherApi = axios.create({
   baseURL: 'https://api.open-meteo.com/v1/forecast?',
@@ -7,7 +9,7 @@ const weatherApi = axios.create({
 
 type CommonResponse = {
   time: number[];
-  weathercode: number[];
+  weathercode: OP_WMO_CODES_TYPE[];
 };
 
 type HourlyResponse = CommonResponse & {
@@ -24,7 +26,7 @@ type DailyResponse = CommonResponse & {
 };
 
 type TodayInfo = {
-  weatherCode: number;
+  weatherCode: OP_WMO_CODES_TYPE;
   temperature: number;
   temperature_max: number; // From daily
   temperature_min: number; // From daily
@@ -91,10 +93,8 @@ const getWeatherInfo = async ({
       hourly:
         'temperature_2m,relativehumidity_2m,precipitation_probability,weathercode',
       daily: 'temperature_2m_max,temperature_2m_min,sunrise,sunset,weathercode',
-      timezone: 'GMT',
-      timeformat: 'unixtime',
-      //   start_date: '2023-06-22', // Should come as param
-      //   end_date: '2023-06-28', // Should come as param
+      timezone: 'Europe/Madrid', // Estaria bien que lo cogiera del navegador
+      timeformat: 'iso8601',
       forecast_days: 7,
     },
   });

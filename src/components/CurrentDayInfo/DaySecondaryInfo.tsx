@@ -2,6 +2,9 @@ import styled from '@emotion/styled';
 import { Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import dayjs from 'dayjs';
 
 const FlexContainer = styled('div')({
   display: 'flex',
@@ -40,26 +43,45 @@ const InfoBox: FC<{
     </FlexItem>
   );
 };
+const DaySecondaryInfo: FC = () => {
+  const { todayInfo } = useSelector((state: RootState) => state.weather);
 
-const DaySecondaryInfo: FC = () => (
-  <>
-    <FlexContainer>
-      {/* Máximo del dia temperature_2m_max Daily */}
-      <InfoBox data="Máxima" value="30º" />
-      {/* Probabilidad de precipitación: precipitation_probability hourly */}
-      <InfoBox data="Lluvia" value="50%" />
-      {/* Amananece surise daily */}
-      <InfoBox data="Amanece" value="15:30" />
-    </FlexContainer>
-    <FlexContainer>
-      {/* Mínimo del dia del dia temperature_2m_max Daily */}
-      <InfoBox data="Mínima" value="15º" />
-      {/* Humedad relativa relativehumidity_2m hourly */}
-      <InfoBox data="Humedad" value="30%" />
-      {/* Anochece sunset daily */}
-      <InfoBox data="Anochece" value="15:30" />
-    </FlexContainer>
-  </>
-);
+  return (
+    <>
+      <FlexContainer>
+        <InfoBox
+          data="Máxima"
+          value={`${todayInfo?.temperature_max || '-'}º`}
+        />
+        <InfoBox
+          data="Lluvia"
+          value={`${todayInfo?.precipitationProb || '-'}%`}
+        />
+        <InfoBox
+          data="Amanece"
+          value={`${
+            todayInfo?.sunrise ? dayjs(todayInfo.sunrise).format('HH:MM') : '-'
+          }`}
+        />
+      </FlexContainer>
+      <FlexContainer>
+        <InfoBox
+          data="Mínima"
+          value={`${todayInfo?.temperature_min || '-'}º`}
+        />
+        <InfoBox
+          data="Humedad"
+          value={`${todayInfo?.relativeHumidity || '-'}%`}
+        />
+        <InfoBox
+          data="Anochece"
+          value={`${
+            todayInfo?.sunset ? dayjs(todayInfo.sunset).format('HH:MM') : '-'
+          }`}
+        />
+      </FlexContainer>
+    </>
+  );
+};
 
 export default DaySecondaryInfo;

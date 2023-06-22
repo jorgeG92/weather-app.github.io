@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { FC } from 'react';
-import { weatherCodes } from '../common/WeatherCodes';
+import { OP_WMO_CODES_TYPE, weatherCodes } from '../common/WeatherCodes';
 
 const WeekInfoBox = styled('div')({
   display: 'flex',
@@ -21,25 +21,35 @@ const WeekBoxTempContainer = styled('div')({
   justifyContent: 'space-between',
 });
 
-const WeekInfoItem: FC = () => {
+type WeekInfoItemProps = {
+  day?: string;
+  temperatureMax: number;
+  temperatureMin: number;
+  weatherCode: OP_WMO_CODES_TYPE;
+};
+
+const WeekInfoItem: FC<WeekInfoItemProps> = ({
+  day = 'Dia 1',
+  temperatureMax,
+  temperatureMin,
+  weatherCode,
+}) => {
   const theme = useTheme();
   const isPhone = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const weatherCode = 0;
   const WeatherIcon = weatherCodes[weatherCode].iconCode;
 
   return (
     <WeekInfoBox>
-      <Typography>Dia X</Typography>
+      {/* Set first letter to uppercase */}
+      <Typography>{`${day[0].toUpperCase()}${day.slice(1)}`}</Typography>
       <WeatherIcon size={isPhone ? 45 : 100} />
       <WeekBoxTempContainer>
-        {/* Max */}
         <Typography color="red" variant="body1" marginRight={2}>
-          20º
+          {temperatureMax}º
         </Typography>
-        {/* Min */}
         <Typography color="blue" variant="body1">
-          10º
+          {temperatureMin}º
         </Typography>
       </WeekBoxTempContainer>
     </WeekInfoBox>

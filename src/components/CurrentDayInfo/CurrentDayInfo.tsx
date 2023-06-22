@@ -1,6 +1,12 @@
 import { Divider, Grid, Typography } from '@mui/material';
+import dayjs from 'dayjs';
 import { FC } from 'react';
-import { weatherCodes } from '../common/WeatherCodes/WeatherCodes';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import {
+  OP_WMO_CODES,
+  weatherCodes,
+} from '../common/WeatherCodes/WeatherCodes';
 import DaySecondaryInfo from './DaySecondaryInfo';
 
 /*
@@ -17,15 +23,24 @@ Entradas esperadas por la store de Redux
 */
 
 const CurrentDayInfo: FC = () => {
-  const weatherCode = 55;
+  const { selectedLocation } = useSelector(
+    (state: RootState) => state.locations
+  );
+  const { todayInfo } = useSelector((state: RootState) => state.weather);
+
+  const day = dayjs(new Date()).locale('es').format('dddd D MMMM');
+
+  const weatherCode = todayInfo?.weatherCode || OP_WMO_CODES[0];
   const WeatherIcon = weatherCodes[weatherCode].iconCode;
   return (
     <Grid container spacing={2}>
       {/* Titulo que muestra la ciudad y el pais  */}
       <Grid item xs={12}>
-        <Typography variant="h4">Madrid, España</Typography>
+        <Typography variant="h4">
+          {selectedLocation?.display_name || '-'}
+        </Typography>
         <Typography variant="h6" color="greenyellow">
-          Lunes 28 Abril
+          {day}
         </Typography>
       </Grid>
 
@@ -41,7 +56,7 @@ const CurrentDayInfo: FC = () => {
           <WeatherIcon size={150} />
         </Grid>
         <Grid item>
-          <Typography variant="h2"> 21º {/*temperature_2m hourly*/}</Typography>
+          <Typography variant="h2">{todayInfo?.temperature || '-'}</Typography>
           <Typography variant="body2">
             {weatherCodes[weatherCode].name}
           </Typography>

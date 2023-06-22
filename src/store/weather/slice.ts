@@ -41,10 +41,10 @@ const { reducer } = createSlice({
     });
     builder.addCase(fetchWeatherInfo.fulfilled, (state, { payload }) => {
       state.loading = false;
-      console.log('payload', payload);
-      // state.todayInfo = action.payload.todayInfo;
-      // // @ts-ignore
-      // state.nextDays = action.payload.nextDays;
+      // @ts-ignore
+      state.todayInfo = payload.todayInfo;
+      // @ts-ignore
+      state.nextDays = payload.nextDays;
     });
     builder.addCase(fetchWeatherInfo.rejected, (state, action) => {
       state.loading = false;

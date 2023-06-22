@@ -23,6 +23,9 @@ const MainContainer: FC = () => {
   const { selectedLocation } = useSelector(
     (state: RootState) => state.locations
   );
+  const { todayInfo, nextDays } = useSelector(
+    (state: RootState) => state.weather
+  );
 
   useEffect(() => {
     // Request weather info when location exist and it has been selected
@@ -40,7 +43,7 @@ const MainContainer: FC = () => {
     <>
       <TopBar />
       <Container>
-        {!selectedLocation ? (
+        {!selectedLocation || !todayInfo || nextDays.length === 0 ? (
           <Typography>Busca y selecciona una ubicación</Typography>
         ) : (
           <>
