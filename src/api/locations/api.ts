@@ -21,7 +21,9 @@ const parseData = (location: GECODE_Location): GECODE_Location => {
   };
 };
 
-const getLocationsByString = async (value: string) => {
+const getLocationsByString = async (
+  value: string
+): Promise<GECODE_Location[]> => {
   try {
     const response = await axios.get(
       GECODE_URL + '/search?city={' + value + '}'

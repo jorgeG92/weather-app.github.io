@@ -44,18 +44,15 @@ const {
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(fetchLocations.pending, (state, action) => {
       // Add user to the state array
-      console.log('Soy el estado y la acción PENDING', state, action);
       state.loading = true;
     });
     builder.addCase(fetchLocations.fulfilled, (state, action) => {
-      // Add user to the state array
-      // console.log('Soy el estado y la acción FULFILLED', state, action.payload);
-      state.locations = action.payload;
+      // Add locations for suggestion on AutoComplete from Toolbar
+      state.locations = action.payload as GECODE_Location[];
       state.loading = false;
     });
     builder.addCase(fetchLocations.rejected, (state, action) => {
       // Add user to the state array
-      console.log('Soy el estado y la acción ERROR', state, action);
       state.loading = false;
     });
   },

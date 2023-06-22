@@ -1,17 +1,17 @@
-import { FC, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store';
+import styled from '@emotion/styled';
 import {
   AppBar,
   Autocomplete,
-  AutocompleteProps,
+  LinearProgress,
   TextField,
   Toolbar,
   Typography,
 } from '@mui/material';
-import styled from '@emotion/styled';
-import { fetchLocations, setLocation } from '../../store/locations';
+import { FC, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { GECODE_Location } from '../../api/locations';
+import { AppDispatch, RootState } from '../../store';
+import { fetchLocations, setLocation } from '../../store/locations';
 
 const FlexToolbar = styled(Toolbar)({
   display: 'flex',
@@ -27,6 +27,9 @@ const StyledTextField = styled(TextField)({
 const TopBar: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { locations } = useSelector((state: RootState) => state.locations);
+  const { loading: loadingWeatherInfo } = useSelector(
+    (state: RootState) => state.weather
+  );
 
   const [selectedValue, setSelectedValue] = useState<
     GECODE_Location | undefined
@@ -57,6 +60,9 @@ const TopBar: FC = () => {
           size="small"
           options={locations}
           getOptionLabel={(option) => (option ? option.display_name : '')}
+          isOptionEqualToValue={(option, value) =>
+            option.place_id === value.place_id
+          }
           value={selectedValue}
           inputValue={inputValue}
           onChange={onChangeAutoComplete}
@@ -68,6 +74,7 @@ const TopBar: FC = () => {
           filterOptions={(x) => x}
         />
       </FlexToolbar>
+      {loadingWeatherInfo && <LinearProgress />}
     </AppBar>
   );
 };
