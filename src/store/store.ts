@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import locations from '../store/locations';
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    locations,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

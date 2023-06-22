@@ -3,7 +3,7 @@ import axios from 'axios';
 const GECODE_URL = 'https://geocode.maps.co/';
 // https://geocode.maps.co/search?q=%7BTres%20Cantos%7D
 
-type GECODE_Location = {
+export type GECODE_Location = {
   place_id: number;
   lat: number;
   lon: number;
