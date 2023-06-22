@@ -14,6 +14,9 @@
         "component": true,
         "html": true
       }
-    ]
+    ],
+    /*
+    https://github.com/import-js/eslint-plugin-import/blob/v2.27.5/docs/rules/no-anonymous-default-export.md */
+    "import/no-anonymous-default-export": [2, { "allowObject": true }]
   }
 }

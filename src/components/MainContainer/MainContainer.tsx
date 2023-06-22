@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
-import { AppBar, Toolbar, Typography } from '@mui/material';
+import { Divider } from '@mui/material';
 import { FC } from 'react';
 import CurrentDayInfo from '../CurrentDayInfo';
+import TopBar from '../TopBar/TopBar';
 import WeekInfo from '../WeekInfo/WeekInfo';
 
 const Container = styled('div')({
@@ -16,13 +17,10 @@ const Container = styled('div')({
 
 const MainContainer: FC = () => (
   <>
-    <AppBar position="relative">
-      <Toolbar>
-        <Typography variant="h5">Weather App</Typography>
-      </Toolbar>
-    </AppBar>
+    <TopBar />
     <Container>
       <CurrentDayInfo />
+      <Divider flexItem color="white" sx={{ marginY: 5 }} />
       <WeekInfo />
     </Container>
   </>
