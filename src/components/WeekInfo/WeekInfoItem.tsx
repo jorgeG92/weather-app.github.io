@@ -1,7 +1,8 @@
-import { useTheme } from '@mui/material/styles';
 import styled from '@emotion/styled';
-import { Icon, Typography, useMediaQuery } from '@mui/material';
-import { FC, ReactNode } from 'react';
+import { Typography, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import { FC } from 'react';
+import { weatherCodes } from '../common/WeatherCodes';
 
 const WeekInfoBox = styled('div')({
   display: 'flex',
@@ -20,21 +21,20 @@ const WeekBoxTempContainer = styled('div')({
   justifyContent: 'space-between',
 });
 
-const StyledIcon = styled(Icon)({
-  fontSize: 100,
-});
-
-const WeekInfoItem: FC<{ children: ReactNode }> = ({ children }) => {
+const WeekInfoItem: FC = () => {
   const theme = useTheme();
   const isPhone = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const weatherCode = 0;
+  const WeatherIcon = weatherCodes[weatherCode].iconCode;
 
   return (
     <WeekInfoBox>
       <Typography>Dia X</Typography>
-      <StyledIcon style={{ fontSize: isPhone ? 45 : 70 }}>start</StyledIcon>
+      <WeatherIcon size={isPhone ? 45 : 100} />
       <WeekBoxTempContainer>
         {/* Max */}
-        <Typography color="red" variant="body1">
+        <Typography color="red" variant="body1" marginRight={2}>
           20º
         </Typography>
         {/* Min */}

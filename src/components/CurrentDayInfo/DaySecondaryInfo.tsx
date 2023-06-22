@@ -1,6 +1,6 @@
-import { useTheme } from '@mui/material/styles';
 import styled from '@emotion/styled';
-import { Box, Grid, Typography, useMediaQuery } from '@mui/material';
+import { Typography, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { FC } from 'react';
 
 const FlexContainer = styled('div')({

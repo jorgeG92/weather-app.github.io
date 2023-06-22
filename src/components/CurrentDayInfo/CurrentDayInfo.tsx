@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Box, Divider, Grid, Icon, Typography } from '@mui/material';
 import { FC } from 'react';
+import { weatherCodes } from '../common/WeatherCodes/WeatherCodes';
 import DaySecondaryInfo from './DaySecondaryInfo';
 
 /*
@@ -16,11 +17,10 @@ Entradas esperadas por la store de Redux
     Probabilidad de precipitación
 */
 
-const IconStyled = styled(Icon)({
-  fontSize: '75px',
-});
-
-const CurrentDayInfo: FC = () => (
+const CurrentDayInfo: FC = () => {
+  const weatherCode = 55;
+  const WeatherIcon = weatherCodes[weatherCode].iconCode;
+  return (
   <Grid container spacing={2}>
     {/* Titulo que muestra la ciudad y el pais  */}
     <Grid item xs={12}>
@@ -38,14 +38,13 @@ const CurrentDayInfo: FC = () => (
       alignItems={'center'}
     >
       <Grid item>
-        <IconStyled style={{ fontSize: 90 }}>
-          {/* weather_code hourly */}
-          add_circle
-        </IconStyled>
+          <WeatherIcon size={150} />
       </Grid>
       <Grid item>
         <Typography variant="h2"> 21º {/*temperature_2m hourly*/}</Typography>
-        <Typography variant="body2">Soleado</Typography>
+          <Typography variant="body2">
+            {weatherCodes[weatherCode].name}
+          </Typography>
       </Grid>
     </Grid>
     <Grid item md={6} xs={12}>
@@ -53,5 +52,6 @@ const CurrentDayInfo: FC = () => (
     </Grid>
   </Grid>
 );
+};
 
 export default CurrentDayInfo;

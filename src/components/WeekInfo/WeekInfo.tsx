@@ -5,22 +5,22 @@ import WeekInfoItem from './WeekInfoItem';
 const WeekInfo: FC = () => (
   <Grid container spacing={2} justifyContent={'space-between'}>
     <Grid item md={2} xs={6}>
-      <WeekInfoItem> Dia 1</WeekInfoItem>
+      <WeekInfoItem />
     </Grid>
     <Grid item md={2} xs={6}>
-      <WeekInfoItem> Dia 1</WeekInfoItem>
+      <WeekInfoItem />
     </Grid>
     <Grid item md={2} xs={6}>
-      <WeekInfoItem> Dia 1</WeekInfoItem>
+      <WeekInfoItem />
     </Grid>
     <Grid item md={2} xs={6}>
-      <WeekInfoItem> Dia 1</WeekInfoItem>
+      <WeekInfoItem />
     </Grid>
     <Grid item md={2} xs={6}>
-      <WeekInfoItem> Dia 1</WeekInfoItem>
+      <WeekInfoItem />
     </Grid>
     <Grid item md={2} xs={6}>
-      <WeekInfoItem> Dia 1</WeekInfoItem>
+      <WeekInfoItem />
     </Grid>
   </Grid>
 );
