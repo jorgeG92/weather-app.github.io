@@ -23,28 +23,15 @@ type InfoBoxProps = {
   data: string;
 };
 
-const InfoBox: FC<InfoBoxProps> = ({ value, data }) => {
-  const theme = useTheme();
+const InfoBox: FC<InfoBoxProps> = ({ value, data }) => (
+  <FlexItem>
+    <Typography variant={'h2'}>{value}</Typography>
+    <Typography variant={'body2'} color="greenyellow">
+      {data}
+    </Typography>
+  </FlexItem>
+);
 
-  // Se utilizan para capturar el tamaño de la pantalla
-  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'lg'));
-  const isPhone = useMediaQuery(theme.breakpoints.down('sm'));
-
-  // Dependiendo del tamaño de la pantalla se utilizan una variante u otra
-  // de la información dispuesta, pues no se pretende que la bloques
-  // de la aplicación hagan un wrap o se sobrepongan unos a otros.
-  const variantValue = isPhone ? 'h5' : isTablet ? 'h3' : 'h2';
-  const variantData = isPhone ? 'caption' : 'body2';
-
-  return (
-    <FlexItem>
-      <Typography variant={variantValue}>{value}</Typography>
-      <Typography variant={variantData} color="greenyellow">
-        {data}
-      </Typography>
-    </FlexItem>
-  );
-};
 const DaySecondaryInfo: FC = () => {
   const { todayInfo } = useSelector((state: RootState) => state.weather);
 
@@ -60,7 +47,7 @@ const DaySecondaryInfo: FC = () => {
       </FlexContainer>
       <FlexContainer>
         <InfoBox data="Mínima" value={`${todayInfo.temperature_min}º`} />
-        <InfoBox data="Humedad" value={`${todayInfo?.relativeHumidity}%`} />
+        <InfoBox data="Humedad" value={`${todayInfo.relativeHumidity}%`} />
         <InfoBox
           data="Anochece"
           value={`${dayjs(todayInfo.sunset).format('HH:MM')}`}
