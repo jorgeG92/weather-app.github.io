@@ -3,10 +3,6 @@ import { GECODE_Location } from '../locations';
 
 import { OP_WMO_CODES_TYPE } from '../../components/common/WeatherCodes';
 
-const weatherApi = axios.create({
-  baseURL: 'https://api.open-meteo.com/v1/forecast?',
-});
-
 type CommonResponse = {
   time: number[];
   weathercode: OP_WMO_CODES_TYPE[];
@@ -76,6 +72,10 @@ export type WeatherInfoParsedResponse = {
   nextDays: NexDayInfo[];
 };
 
+const weatherApi = axios.create({
+  baseURL: 'https://api.open-meteo.com/v1/forecast?',
+});
+
 const getWeatherInfo = async ({
   lat,
   lon,
@@ -83,28 +83,33 @@ const getWeatherInfo = async ({
   GECODE_Location,
   'lat' | 'lon'
 >): Promise<WeatherInfoParsedResponse> => {
-  const response = await weatherApi.request<
-    any,
-    AxiosResponse<WeatherInfoResponse>
-  >({
-    params: {
-      latitude: lat,
-      longitude: lon,
-      hourly:
-        'temperature_2m,relativehumidity_2m,precipitation_probability,weathercode',
-      daily: 'temperature_2m_max,temperature_2m_min,sunrise,sunset,weathercode',
-      timezone: 'Europe/Madrid', // Estaria bien que lo cogiera del navegador
-      timeformat: 'iso8601',
-      forecast_days: 7,
-    },
-  });
+  try {
+    const response = await weatherApi.request<
+      any,
+      AxiosResponse<WeatherInfoResponse>
+    >({
+      params: {
+        latitude: lat,
+        longitude: lon,
+        hourly:
+          'temperature_2m,relativehumidity_2m,precipitation_probability,weathercode',
+        daily:
+          'temperature_2m_max,temperature_2m_min,sunrise,sunset,weathercode',
+        timezone: 'Europe/Madrid', // TODO Estaria bien que lo cogiera del navegador
+        timeformat: 'iso8601',
+        forecast_days: 7,
+      },
+    });
 
-  const { hourly, daily } = response.data;
+    const { hourly, daily } = response.data;
 
-  return {
-    todayInfo: parseTodayInfo(hourly, daily),
-    nextDays: parseNextDayInfo(daily),
-  };
+    return {
+      todayInfo: parseTodayInfo(hourly, daily),
+      nextDays: parseNextDayInfo(daily),
+    };
+  } catch (error) {
+    throw error;
+  }
 };
 
 export { getWeatherInfo };
