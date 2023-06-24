@@ -28,9 +28,9 @@ const TopAutocomplete: FC = () => {
   );
 
   // Keep selected location value, all object
-  const [selectedValue, setSelectedValue] = useState<
-    GECODE_Location | undefined
-  >(undefined);
+  const [selectedValue, setSelectedValue] = useState<GECODE_Location | null>(
+    null
+  );
 
   // Keeps the typed value
   const [inputValue, setInputValue] = useState<string>('');
