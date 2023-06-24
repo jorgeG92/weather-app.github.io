@@ -95,7 +95,8 @@ const getWeatherInfo = async ({
           'temperature_2m,relativehumidity_2m,precipitation_probability,weathercode',
         daily:
           'temperature_2m_max,temperature_2m_min,sunrise,sunset,weathercode',
-        timezone: 'Europe/Madrid', // TODO Estaria bien que lo cogiera del navegador
+        // Take timezone from browser to fetch correct time of sunset and sunrise
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         timeformat: 'iso8601',
         forecast_days: 7,
       },
