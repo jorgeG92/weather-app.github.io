@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
-import { Typography } from '@mui/material';
+import { Typography, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import dayjs from 'dayjs';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import dayjs from 'dayjs';
 
 const FlexContainer = styled('div')({
   display: 'flex',
@@ -22,14 +23,19 @@ type InfoBoxProps = {
   data: string;
 };
 
-const InfoBox: FC<InfoBoxProps> = ({ value, data }) => (
-  <FlexItem>
-    <Typography variant={'h2'}>{value}</Typography>
-    <Typography variant={'body2'} color="greenyellow">
-      {data}
-    </Typography>
-  </FlexItem>
-);
+const InfoBox: FC<InfoBoxProps> = ({ value, data }) => {
+  const theme = useTheme();
+  const isPhone = useMediaQuery(theme.breakpoints.down('sm'));
+
+  return (
+    <FlexItem>
+      <Typography variant={isPhone ? 'h4' : 'h2'}>{value}</Typography>
+      <Typography variant="body2" color="greenyellow">
+        {data}
+      </Typography>
+    </FlexItem>
+  );
+};
 
 const DaySecondaryInfo: FC = () => {
   const { todayInfo } = useSelector((state: RootState) => state.weather);

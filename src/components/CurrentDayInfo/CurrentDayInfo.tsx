@@ -21,7 +21,6 @@ const CurrentDayInfo: FC = () => {
   const WeatherIcon = weatherCodes[weatherCode].iconCode;
   return (
     <Grid container spacing={2}>
-      {/* Titulo que muestra la ciudad y el país */}
       <Grid item xs={12}>
         <Typography variant="h4">
           {selectedLocation?.display_name || '-'}
