@@ -18,10 +18,12 @@ const FlexItem = styled('div')({
   flexGrow: 1,
 });
 
-const InfoBox: FC<{
+type InfoBoxProps = {
   value: string;
   data: string;
-}> = ({ value, data }) => {
+};
+
+const InfoBox: FC<InfoBoxProps> = ({ value, data }) => {
   const theme = useTheme();
 
   // Se utilizan para capturar el tamaño de la pantalla
@@ -46,42 +48,26 @@ const InfoBox: FC<{
 const DaySecondaryInfo: FC = () => {
   const { todayInfo } = useSelector((state: RootState) => state.weather);
 
-  return (
+  return todayInfo ? (
     <>
       <FlexContainer>
-        <InfoBox
-          data="Máxima"
-          value={`${todayInfo?.temperature_max || '-'}º`}
-        />
-        <InfoBox
-          data="Lluvia"
-          value={`${todayInfo?.precipitationProb || '-'}%`}
-        />
+        <InfoBox data="Máxima" value={`${todayInfo.temperature_max}º`} />
+        <InfoBox data="Lluvia" value={`${todayInfo.precipitationProb}%`} />
         <InfoBox
           data="Amanece"
-          value={`${
-            todayInfo?.sunrise ? dayjs(todayInfo.sunrise).format('HH:MM') : '-'
-          }`}
+          value={`${dayjs(todayInfo.sunrise).format('HH:MM')}`}
         />
       </FlexContainer>
       <FlexContainer>
-        <InfoBox
-          data="Mínima"
-          value={`${todayInfo?.temperature_min || '-'}º`}
-        />
-        <InfoBox
-          data="Humedad"
-          value={`${todayInfo?.relativeHumidity || '-'}%`}
-        />
+        <InfoBox data="Mínima" value={`${todayInfo.temperature_min}º`} />
+        <InfoBox data="Humedad" value={`${todayInfo?.relativeHumidity}%`} />
         <InfoBox
           data="Anochece"
-          value={`${
-            todayInfo?.sunset ? dayjs(todayInfo.sunset).format('HH:MM') : '-'
-          }`}
+          value={`${dayjs(todayInfo.sunset).format('HH:MM')}`}
         />
       </FlexContainer>
     </>
-  );
+  ) : null;
 };
 
 export default DaySecondaryInfo;

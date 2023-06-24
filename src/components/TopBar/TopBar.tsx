@@ -13,20 +13,23 @@ import { GECODE_Location } from '../../api/locations';
 import { AppDispatch, RootState } from '../../store';
 import { fetchLocations, setLocation } from '../../store/locations';
 
-const FlexToolbar = styled(Toolbar)({
-  display: 'flex',
-  flexDirection: 'row',
+const JustifyToolbar = styled(Toolbar)({
   justifyContent: 'space-between',
 });
 
-const StyledTextField = styled(TextField)({
-  width: 400,
-  minWidth: 200,
+const AutocompleteContainer = styled.div({
+  flexGrow: 1,
+  maxWidth: 500,
+  minWidth: 50,
+  backgroundColor: 'white',
+  borderRadius: 5,
 });
 
 const TopBar: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { locations } = useSelector((state: RootState) => state.locations);
+  const { loading: loadingLocations, locations } = useSelector(
+    (state: RootState) => state.locations
+  );
   const { loading: loadingWeatherInfo } = useSelector(
     (state: RootState) => state.weather
   );
@@ -47,33 +50,37 @@ const TopBar: FC = () => {
 
   const onInputChange = (_: any, value: string) => {
     // Sirve para pedir las peticiones a la API de localizaciones
-    console.log('Hola! Input ' + value);
     dispatch(fetchLocations(value));
     setInputValue(value);
   };
 
   return (
     <AppBar position="relative">
-      <FlexToolbar>
-        <Typography variant="h5">Weather App</Typography>
-        <Autocomplete
-          size="small"
-          options={locations}
-          getOptionLabel={(option) => (option ? option.display_name : '')}
-          isOptionEqualToValue={(option, value) =>
-            option.place_id === value.place_id
-          }
-          value={selectedValue}
-          inputValue={inputValue}
-          onChange={onChangeAutoComplete}
-          onInputChange={onInputChange}
-          renderInput={(params) => (
-            <StyledTextField {...params} label="Localización" />
-          )}
-          // Ver si filterOptions termina siendo necesario
-          filterOptions={(x) => x}
-        />
-      </FlexToolbar>
+      <JustifyToolbar>
+        <Typography variant="h5" noWrap>
+          Weather App
+        </Typography>
+        <AutocompleteContainer>
+          <Autocomplete
+            size="small"
+            loading={loadingLocations}
+            options={locations}
+            getOptionLabel={(option) => (option ? option.display_name : '')}
+            isOptionEqualToValue={(option, value) =>
+              option.place_id === value.place_id
+            }
+            value={selectedValue}
+            inputValue={inputValue}
+            onChange={onChangeAutoComplete}
+            onInputChange={onInputChange}
+            renderInput={(params) => (
+              <TextField {...params} placeholder="Buscar ciudad" />
+            )}
+            // Disabled native filtering of component suggested by MUI -> https://mui.com/material-ui/react-autocomplete/#search-as-you-type
+            filterOptions={(x) => x}
+          />
+        </AutocompleteContainer>
+      </JustifyToolbar>
       {loadingWeatherInfo && <LinearProgress />}
     </AppBar>
   );

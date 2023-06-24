@@ -9,19 +9,6 @@ import {
 } from '../common/WeatherCodes/WeatherCodes';
 import DaySecondaryInfo from './DaySecondaryInfo';
 
-/*
-Entradas esperadas por la store de Redux
-    Ciudad,
-    País,
-    Fecha,
-    Tiempo: wheathercode
-    Temeperatura
-
-    Segundo Bloque:
-    Temperatura maxima, minima y la que se quiera añadir
-    Probabilidad de precipitación
-*/
-
 const CurrentDayInfo: FC = () => {
   const { selectedLocation } = useSelector(
     (state: RootState) => state.locations
@@ -34,7 +21,7 @@ const CurrentDayInfo: FC = () => {
   const WeatherIcon = weatherCodes[weatherCode].iconCode;
   return (
     <Grid container spacing={2}>
-      {/* Titulo que muestra la ciudad y el pais  */}
+      {/* Titulo que muestra la ciudad y el país */}
       <Grid item xs={12}>
         <Typography variant="h4">
           {selectedLocation?.display_name || '-'}
