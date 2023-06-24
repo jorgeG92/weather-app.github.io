@@ -1,13 +1,8 @@
-import styled from '@emotion/styled';
 import { AppBar, LinearProgress, Toolbar, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import TopAutocomplete from './TopAutocomplete';
-
-const JustifyToolbar = styled(Toolbar)({
-  justifyContent: 'space-between',
-});
 
 const TopBar: FC = () => {
   const { loading: loadingWeatherInfo } = useSelector(
@@ -16,12 +11,12 @@ const TopBar: FC = () => {
 
   return (
     <AppBar position="relative">
-      <JustifyToolbar>
-        <Typography variant="h5" noWrap>
+      <Toolbar sx={{ justifyContent: 'space-between' }}>
+        <Typography variant="h5" noWrap sx={{ marginRight: 10 }}>
           Weather App
         </Typography>
         <TopAutocomplete />
-      </JustifyToolbar>
+      </Toolbar>
       {loadingWeatherInfo && <LinearProgress />}
     </AppBar>
   );
