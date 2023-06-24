@@ -11,9 +11,8 @@ const WeekInfo: FC = () => {
   return (
     <Grid container spacing={2} justifyContent={'space-between'}>
       {nextDays.map((weatherInfo) => (
-        <Grid item md={2} xs={6}>
+        <Grid item md={2} xs={6} key={weatherInfo.time}>
           <WeekInfoItem
-            key={weatherInfo.time}
             day={dayjs(weatherInfo.time).locale('es').format('dddd')}
             temperatureMax={weatherInfo.temperature_max}
             temperatureMin={weatherInfo.temperature_min}

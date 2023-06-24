@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
-import { Typography, useMediaQuery } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { Typography } from '@mui/material';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
