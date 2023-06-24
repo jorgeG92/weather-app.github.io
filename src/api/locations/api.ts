@@ -25,7 +25,6 @@ const getLocationsByString = async (
       AxiosResponse<GECODE_Location[]>
     >({
       params: {
-        q: value,
         city: value,
       },
     });
