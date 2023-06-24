@@ -13,7 +13,9 @@ const WeekInfo: FC = () => {
       {nextDays.map((weatherInfo) => (
         <Grid item md={2} xs={6} key={weatherInfo.time}>
           <WeekInfoItem
-            day={dayjs(weatherInfo.time).locale('es').format('dddd')}
+            day={dayjs(weatherInfo.time)
+              .locale(navigator.language)
+              .format('dddd')}
             temperatureMax={weatherInfo.temperature_max}
             temperatureMin={weatherInfo.temperature_min}
             weatherCode={weatherInfo.weatherCode}
