@@ -7,6 +7,8 @@ import { fetchWeatherInfo } from '../../store/weather';
 import CurrentDayInfo from '../CurrentDayInfo';
 import TopBar from '../TopBar/TopBar';
 import WeekInfo from '../WeekInfo/WeekInfo';
+import CitiesList from '../CitiesList/CitiesList';
+import AddCityButton from '../CitiesList/AddCityButton/AddCityButton';
 
 const Container = styled('div')({
   padding: 50,
@@ -17,6 +19,10 @@ const Container = styled('div')({
   alignItems: 'center',
   justifyContent: 'space-between',
 });
+
+const SectionDivider: FC = () => (
+  <Divider flexItem color="white" sx={{ marginY: 2 }} />
+);
 
 const MainContainer: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -43,13 +49,17 @@ const MainContainer: FC = () => {
     <>
       <TopBar />
       <Container>
+        <CitiesList />
+        <SectionDivider />
         {!selectedLocation || !todayInfo || nextDays.length === 0 ? (
           <Typography>Busca y selecciona una ubicación</Typography>
         ) : (
           <>
             <CurrentDayInfo />
-            <Divider flexItem color="white" sx={{ marginY: 5 }} />
+            <SectionDivider />
             <WeekInfo />
+            <SectionDivider />
+            <AddCityButton />
           </>
         )}
       </Container>
