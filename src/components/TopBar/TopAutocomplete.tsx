@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import { GECODE_Location } from '../../api/locations';
@@ -49,10 +49,18 @@ const TopAutocomplete: FC = () => {
   // This onChange is called when the user is typing an fetch new options
   const onInputChange = (_: any, value: string) => {
     if (selectedValue?.display_name !== value) {
-      dispatch(fetchLocations(value));
       setInputValue(value);
+      dispatch(fetchLocations(value));
     }
   };
+
+  // Bounce the api request to avoid make request for every word typed from keyboard
+  useEffect(() => {
+    const gettingLocations = setTimeout(() => {
+      dispatch(fetchLocations(inputValue));
+    }, 500);
+    return () => clearTimeout(gettingLocations);
+  }, [dispatch, inputValue]);
 
   return (
     <AutocompleteContainer>
