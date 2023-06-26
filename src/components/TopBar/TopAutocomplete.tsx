@@ -1,10 +1,10 @@
-import { FC, useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store';
-import { GECODE_Location } from '../../api/locations';
-import { fetchLocations, setLocation } from '../../store/locations';
-import { Autocomplete, CircularProgress, TextField } from '@mui/material';
 import styled from '@emotion/styled';
+import { Autocomplete, CircularProgress, TextField } from '@mui/material';
+import { FC, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { GECODE_Location } from '../../api/locations';
+import { AppDispatch, RootState } from '../../store';
+import { fetchLocations, setLocation } from '../../store/locations';
 
 const AutocompleteContainer = styled.div({
   flexGrow: 1,

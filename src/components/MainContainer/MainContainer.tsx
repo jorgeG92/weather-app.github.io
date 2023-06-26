@@ -9,6 +9,7 @@ import TopBar from '../TopBar/TopBar';
 import WeekInfo from '../WeekInfo/WeekInfo';
 import CitiesList from '../CitiesList/CitiesList';
 import AddCityButton from '../CitiesList/AddCityButton/AddCityButton';
+import ErrorSection from '../ErrorSection/ErrorSection';
 
 const Container = styled('div')({
   padding: 50,
@@ -49,6 +50,7 @@ const MainContainer: FC = () => {
     <>
       <TopBar />
       <Container>
+        <ErrorSection />
         <Typography variant="h5" sx={{ marginBottom: 1 }}>
           Ubicaciones guardadas
         </Typography>

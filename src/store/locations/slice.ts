@@ -22,11 +22,13 @@ type LocationState = {
   loading: boolean;
   selectedLocation: GECODE_Location | undefined;
   locations: GECODE_Location[];
+  error: Error | undefined;
 };
 const initialState: LocationState = {
   loading: false,
   selectedLocation: undefined,
   locations: [],
+  error: undefined,
 };
 
 const {
@@ -43,18 +45,19 @@ const {
   },
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(fetchLocations.pending, (state, action) => {
+    builder.addCase(fetchLocations.pending, (state) => {
       // Add user to the state array
       state.loading = true;
     });
-    builder.addCase(fetchLocations.fulfilled, (state, action) => {
+    builder.addCase(fetchLocations.fulfilled, (state, { payload }) => {
       // Add locations for suggestion on AutoComplete from Toolbar
-      state.locations = action.payload as GECODE_Location[];
+      state.locations = payload as GECODE_Location[];
       state.loading = false;
     });
-    builder.addCase(fetchLocations.rejected, (state, action) => {
+    builder.addCase(fetchLocations.rejected, (state, { error }) => {
       // Add user to the state array
       state.loading = false;
+      state.error = error as Error;
     });
   },
 });

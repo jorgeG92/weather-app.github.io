@@ -36,7 +36,7 @@ const { reducer } = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     // Hourly reducers
-    builder.addCase(fetchWeatherInfo.pending, (state, action) => {
+    builder.addCase(fetchWeatherInfo.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(fetchWeatherInfo.fulfilled, (state, { payload }) => {
@@ -46,9 +46,9 @@ const { reducer } = createSlice({
       // @ts-ignore
       state.nextDays = payload.nextDays;
     });
-    builder.addCase(fetchWeatherInfo.rejected, (state, action) => {
+    builder.addCase(fetchWeatherInfo.rejected, (state, { error }) => {
       state.loading = false;
-      state.error = action.payload as Error;
+      state.error = error as Error;
     });
   },
 });
