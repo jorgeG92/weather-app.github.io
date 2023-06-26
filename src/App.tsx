@@ -4,6 +4,7 @@ import { ThemeProvider, styled } from '@mui/material';
 import { Provider } from 'react-redux';
 import store from './store';
 import theme from './theme';
+import 'dayjs/locale/es'; // let use day.js with on spanish version
 
 const AppContainer = styled('div')({
   height: '100%',
