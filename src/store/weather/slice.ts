@@ -11,7 +11,7 @@ const fetchWeatherInfo = createAsyncThunk(
       const response = await getWeatherInfo({ lat, lon });
       return response;
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 );

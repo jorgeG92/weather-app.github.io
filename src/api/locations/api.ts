@@ -29,8 +29,8 @@ const getLocationsByString = async (
       },
     });
     return response.data;
-  } catch (e) {
-    throw e;
+  } catch (error) {
+    throw error;
   }
 };
 

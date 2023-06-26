@@ -10,7 +10,8 @@ const fetchLocations = createAsyncThunk(
       const response = await getLocationsByString(searchString);
       return response;
     } catch (error) {
-      return error;
+      console.log('throw error');
+      throw error;
     }
   }
 );

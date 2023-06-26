@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import { GECODE_Location } from '../../api/locations';
@@ -48,7 +48,8 @@ const TopAutocomplete: FC = () => {
 
   // This onChange is called when the user is typing an fetch new options
   const onInputChange = (_: any, value: string) => {
-    if (selectedValue?.display_name !== value) {
+    // Avoid call
+    if (!!value) {
       setInputValue(value);
     }
   };
