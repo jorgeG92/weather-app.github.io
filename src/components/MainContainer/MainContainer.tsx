@@ -49,6 +49,9 @@ const MainContainer: FC = () => {
     <>
       <TopBar />
       <Container>
+        <Typography variant="h5" sx={{ marginBottom: 1 }}>
+          Ubicaciones guardadas
+        </Typography>
         <CitiesList />
         <SectionDivider />
         {!selectedLocation || !todayInfo || nextDays.length === 0 ? (

@@ -55,18 +55,13 @@ const CitiesList: FC = () => {
   const citiesList = useSelector((state: RootState) => state.citiesList);
 
   return citiesList.length !== 0 ? (
-    <FlexContainer>
-      <Typography variant="h5" sx={{ marginBottom: 1 }}>
-        Ubicaciones guardadas
-      </Typography>
-      <Grid container spacing={2} direction={'row'} alignContent={'center'}>
-        {citiesList.map((item) => (
-          <Grid key={item.city.place_id} sm={4} item xs={12}>
-            <CitiesListButton cityInfo={item.city} />
-          </Grid>
-        ))}
-      </Grid>
-    </FlexContainer>
+    <Grid container spacing={2} direction={'row'} alignContent={'center'}>
+      {citiesList.map((item) => (
+        <Grid key={item.city.place_id} sm={4} item xs={12}>
+          <CitiesListButton cityInfo={item.city} />
+        </Grid>
+      ))}
+    </Grid>
   ) : null;
 };
 export default CitiesList;
