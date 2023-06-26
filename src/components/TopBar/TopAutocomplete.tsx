@@ -50,7 +50,6 @@ const TopAutocomplete: FC = () => {
   const onInputChange = (_: any, value: string) => {
     if (selectedValue?.display_name !== value) {
       setInputValue(value);
-      dispatch(fetchLocations(value));
     }
   };
 
