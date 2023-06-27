@@ -12,7 +12,6 @@ const ErrorSection: FC = () => {
   const [countdown, setCountdown] = useState(0);
   const [showError, setShowError] = useState(false);
 
-  console.log('activo mensaje de error', errorLocations, errorWeather);
   useEffect(() => {
     if (errorLocations || errorWeather) {
       setCountdown(5);
@@ -28,7 +27,7 @@ const ErrorSection: FC = () => {
   return (
     <Alert
       severity="error"
-      sx={{ marginBottom: 1, display: showError ? '' : 'none' }}
+      sx={{ marginBottom: 1, display: showError ? 'flex' : 'none' }}
     >
       <AlertTitle>Error</AlertTitle>
       <Typography variant="body2">
