@@ -38,7 +38,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "coverage": "npm run test -- --coverage",
-    "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "serve": "npm run build && serve build -l 4000"
@@ -63,7 +62,6 @@
   "devDependencies": {
     "eslint-config-prettier": "^8.8.0",
     "gh-pages": "^5.0.0",
-    "msw": "1.2.2",
     "prettier": "2.8.8"
   }
 }
