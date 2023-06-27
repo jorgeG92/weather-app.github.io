@@ -32,7 +32,7 @@ type TodayInfo = {
   sunrise: number; // From daily
 };
 
-type NexDayInfo = Pick<
+export type NexDayInfo = Pick<
   TodayInfo,
   'weatherCode' | 'temperature_max' | 'temperature_min'
 > & {

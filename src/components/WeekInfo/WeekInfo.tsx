@@ -9,7 +9,12 @@ const WeekInfo: FC = () => {
   const { nextDays } = useSelector((state: RootState) => state.weather);
 
   return (
-    <Grid container spacing={2} justifyContent={'space-between'}>
+    <Grid
+      container
+      spacing={2}
+      justifyContent={'space-between'}
+      data-testid="week-info"
+    >
       {nextDays.map((weatherInfo) => (
         <Grid item md={2} xs={6} key={weatherInfo.time}>
           <WeekInfoItem
