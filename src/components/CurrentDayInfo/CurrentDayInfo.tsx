@@ -20,7 +20,7 @@ const CurrentDayInfo: FC = () => {
   const weatherCode = todayInfo?.weatherCode || OP_WMO_CODES[0];
   const WeatherIcon = weatherCodes[weatherCode].iconCode;
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} data-testid="current-day">
       <Grid item xs={12}>
         <Typography variant="h4">
           {selectedLocation?.display_name || '-'}

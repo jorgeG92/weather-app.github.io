@@ -42,7 +42,7 @@ const DaySecondaryInfo: FC = () => {
 
   return todayInfo ? (
     <>
-      <FlexContainer>
+      <FlexContainer data-testid="day-secondary-info">
         <InfoBox data="Máxima" value={`${todayInfo.temperature_max}º`} />
         <InfoBox data="Lluvia" value={`${todayInfo.precipitationProb}%`} />
         <InfoBox
