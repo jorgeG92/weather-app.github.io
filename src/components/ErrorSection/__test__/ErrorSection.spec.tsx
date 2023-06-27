@@ -10,10 +10,9 @@ const buildStore = (error: Error | undefined): TestStore => ({
 describe('ErrorSection unitary test', () => {
   it('component show error message', async () => {
     const testError: Error = { name: 'TestError', message: 'Error en test' };
-    const { getByText, getByRole, findByText } = renderWithRedux(
-      <ErrorSection />,
-      buildStore(testError)
-    );
+    const {
+      render: { getByText, getByRole, findByText },
+    } = renderWithRedux(<ErrorSection />, buildStore(testError));
 
     //  Show error message
     expect(getByRole('alert', { hidden: true })).toBeInTheDocument();

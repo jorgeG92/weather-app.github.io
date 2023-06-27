@@ -18,19 +18,20 @@ const buildedStore: TestStore = {
 };
 
 describe('WeekInfo unitary test', () => {
-  it('component render empty', () => {
-    const { getByTestId } = renderWithRedux(<WeekInfo />, {});
+  it('should not render any child', () => {
+    const {
+      render: { getByTestId },
+    } = renderWithRedux(<WeekInfo />, {});
     const weekInfoContainer = getByTestId('week-info');
 
     // Expect that container exist without children
     expect(weekInfoContainer).toBeInTheDocument();
     expect(weekInfoContainer.children).toHaveLength(0);
   });
-  it('component render properly one day info', () => {
-    const { getByTestId, getByText } = renderWithRedux(
-      <WeekInfo />,
-      buildedStore
-    );
+  it('should render properly day info', () => {
+    const {
+      render: { getByTestId, getByText },
+    } = renderWithRedux(<WeekInfo />, buildedStore);
     const weekInfoContainer = getByTestId('week-info');
 
     // Expect that container exist without children

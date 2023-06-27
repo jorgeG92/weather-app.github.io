@@ -26,7 +26,11 @@ const renderWithRedux = (ui: ReactElement, partialState: TestStore) => {
   const ReduxWrapper = ({ children }: PropsWithChildren<{}>): ReactElement => (
     <Provider store={testStore}>{children}</Provider>
   );
-  return render(ui, { wrapper: ReduxWrapper });
+  const renderResult = render(ui, { wrapper: ReduxWrapper });
+  return {
+    store: testStore,
+    render: renderResult,
+  };
 };
 
 export { renderWithRedux };
