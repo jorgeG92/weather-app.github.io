@@ -13,9 +13,6 @@ const nextDay: NexDayInfo = {
 
 const buildedStore: TestStore = {
   weather: {
-    error: undefined,
-    loading: false,
-    todayInfo: undefined,
     nextDays: [nextDay],
   },
 };

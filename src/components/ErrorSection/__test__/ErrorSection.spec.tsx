@@ -3,9 +3,6 @@ import ErrorSection from '../ErrorSection';
 
 const buildStore = (error: Error | undefined): TestStore => ({
   locations: {
-    loading: false,
-    selectedLocation: undefined,
-    locations: [],
     error,
   },
 });

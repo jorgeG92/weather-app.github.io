@@ -61,5 +61,5 @@ const {
   },
 });
 
-export { setLocation, fetchLocations };
+export { setLocation, fetchLocations, initialState };
 export default reducer;

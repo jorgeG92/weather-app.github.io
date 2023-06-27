@@ -53,5 +53,5 @@ const { reducer } = createSlice({
   },
 });
 
-export { fetchWeatherInfo };
+export { fetchWeatherInfo, initialState };
 export default reducer;

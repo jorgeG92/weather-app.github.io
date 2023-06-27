@@ -51,5 +51,5 @@ const {
   },
 });
 
-export { addCity, removeCity, updateWeatherCityInfo };
+export { addCity, removeCity, updateWeatherCityInfo, initialState };
 export default reducer;
