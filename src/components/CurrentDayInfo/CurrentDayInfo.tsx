@@ -15,6 +15,7 @@ const CurrentDayInfo: FC = () => {
   );
   const { todayInfo } = useSelector((state: RootState) => state.weather);
 
+  // Format day showed below location name
   const day = dayjs(new Date()).locale('es').format('dddd D MMMM');
 
   const weatherCode = todayInfo?.weatherCode || OP_WMO_CODES[0];
